@@ -65,9 +65,9 @@ class TicTacToe:
 
     def safe_result(self, result):
         '''Метод логирования выйгрышей'''
-        results = open('result.txt', 'a')
-        results.write(f"{result}\n")
-        results.close()
+        with open('result.txt', 'a') as results:
+            results.write(f"{result}\n")
+
 
     def on_win_method(self, text):
         '''Промежуточная функция для обновления поля и сохранения результата'''
@@ -79,22 +79,22 @@ class TicTacToe:
 
     def show_result(self):
         '''Выводит резуьтаты игр'''
-        results = open('result.txt', 'r')
-        team_O = 0
-        team_X = 0
-        print('_' * 5)
-        for line in results:
-            print(line, end='')
-            if line[0] == "O":
-                team_O += 1
-            elif line[0] == "X":
-                team_X += 1
-            else:
-                continue
-        print('_' * 5)
-        print(f"Команда крестиков выйграла: {team_X} раз\n"
-              f"Команда ноликов выйграла: {team_O} раз")
-        print('_' * 5)
+        with open('result.txt', 'r') as results:
+            team_O = 0
+            team_X = 0
+            print('_' * 5)
+            for line in results:
+                print(line, end='')
+                if line[0] == "O":
+                    team_O += 1
+                elif line[0] == "X":
+                    team_X += 1
+                else:
+                    continue
+            print('_' * 5)
+            print(f"Команда крестиков выйграла: {team_X} раз\n"
+                  f"Команда ноликов выйграла: {team_O} раз")
+            print('_' * 5)
 
 
 
